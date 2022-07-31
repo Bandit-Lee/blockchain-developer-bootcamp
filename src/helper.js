@@ -1,10 +1,10 @@
 export const ETHER_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const DECIMALS = (10 ** 18)
 
-export const ether = (wei) => {
-    if (wei) {
-        return (wei / DECIMALS) // 18 decimal places
-    }
+export const ether = (n) => {
+    return new web3.utils.BN(
+        web3.utils.toWei(n.toString(), 'ether')
+    )
 }
 
 // Tokens and ether have same decimal resolution

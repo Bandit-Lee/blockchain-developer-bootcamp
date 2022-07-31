@@ -79,14 +79,17 @@ contract('Token', ([deployer, receiver, exchange]) => {
 			it('rejects insufficient balances', async () => {
 				let invalidAmount
 				invalidAmount = tokens(100000000) // 100 Million, greater than total supply
-				await token.transfer(receiver, invalidAmount, { from: deployer }).should.be.rejectedWith(EVM_REVERT)
+				await token.transfer(receiver, invalidAmount, { from: deployer })
+					.should.be.rejectedWith(EVM_REVERT)
 
 				invalidAmount = tokens(10) // 100 Million, greater than total supply
-				await token.transfer(deployer, invalidAmount, { from: receiver }).should.be.rejectedWith(EVM_REVERT)
+				await token.transfer(deployer, invalidAmount, { from: receiver })
+					.should.be.rejectedWith(EVM_REVERT)
 			})
 
 			it('rejects invalid recipent', async () => {
-				await token.transfer(0x0, amount, { from: deployer }).should.be.rejected
+				await token.transfer(0x0, amount, { from: deployer })
+					.should.be.rejected
 			})
 
 		})
@@ -171,11 +174,13 @@ contract('Token', ([deployer, receiver, exchange]) => {
 				it('rejects insufficient amounts', async () => {
 					// Attempt to transfer too many tokens
 					const invalidAmount = tokens(100000000) // 100 Million, greater than total supply
-					await token.transferFrom(deployer, receiver, invalidAmount, { from: exchange }).should.be.rejectedWith(EVM_REVERT)
+					await token.transferFrom(deployer, receiver, invalidAmount, { from: exchange })
+						.should.be.rejectedWith(EVM_REVERT)
 				})
 
 				it('rejects invalid recipents', async () => {
-					await token.transferFrom(deployer, 0x0, amount, { from: exchange }).should.be.rejected
+					await token.transferFrom(deployer, 0x0, amount, { from: exchange })
+						.should.be.rejected
 				})
 
 			})
