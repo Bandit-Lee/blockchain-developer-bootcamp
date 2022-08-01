@@ -93,7 +93,7 @@ contract Exchange {
         // Ensure address as enough Ether
         require(tokens[ETHER][msg.sender] >= _amount);
         tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].sub(_amount);
-
+        msg.sender.transfer(_amount);
         // Emit event
         emit Withdraw(ETHER, msg.sender, _amount, tokens[ETHER][msg.sender]);
     }

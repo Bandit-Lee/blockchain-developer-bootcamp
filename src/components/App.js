@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
 
+import Navbar from './Navbar'
+import Content from './Content'
+
 import { contractsLoadedSelector } from '../store/selectors'
 
 import { connect } from 'react-redux'
@@ -46,7 +49,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        hello world
+        <Navbar />
+        {this.props.contractsLoaded ? (
+          <Content />
+        ) : (
+          <div className="content"></div>
+        )}
       </div>
     )
   }
