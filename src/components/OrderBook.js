@@ -33,11 +33,13 @@ function showOrderBook(props) {
       {orderBook.sellOrders.map((order) =>
         renderOrder(order, dispatch, exchange, account)
       )}
+      <tr>上面是(Sell订单: 卖家发布卖Token的订单, 买家支付ETH获得Token)</tr>
       <tr>
-        <th>DAPP</th>
+        <th>DAPP AMOUNT</th>
         <th>DAPP / ETH</th>
-        <th>ETH</th>
+        <th>ETH AMOUNT</th>
       </tr>
+      <tr>下面是(Buy订单: 买家发布买Token的订单, 卖家支付Token获得ETH)</tr>
       {orderBook.buyOrders.map((order) =>
         renderOrder(order, dispatch, exchange, account)
       )}

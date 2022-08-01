@@ -18,7 +18,7 @@ class Content extends Component {
   async loadBlockchainData(props) {
     const { dispatch, exchange } = props
     await loadAllOrders(exchange, dispatch)
-    // 在 Content 中订阅时间, 如果将这段代码写在 MyTransaction.js 也是可以的.
+    // 在 Content 中订阅事件, 如果将这段代码写在 MyTransaction.js 也是可以的.
     await subscribeToEvents(exchange, dispatch)
   }
 

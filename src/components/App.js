@@ -33,12 +33,14 @@ class App extends Component {
       window.alert(
         'Token smart contract not detected on the current network. Please select another network with MEtamask. 该网络中不存在 token, 请在 metamask 中切换网络'
       )
+      return
     }
     const exchange = await loadExchange(web3, networkId, dispatch)
     if (!exchange) {
       window.alert(
         'Exchange smart contract not detected on the current network. Please select another network with MEtamask. 该网络中不存在 Exchange, 请在 metamask 中切换网络'
       )
+      return
     }
     const totalSupply = await token.methods.totalSupply().call()
     console.log('totalSupply: ', totalSupply, 'tokens')

@@ -58,6 +58,8 @@ contract Exchange {
         uint256 timestamp
     );
 
+    // 如果是买token的订单 tokenGive 就是0 , 意思是用tokenGive这个地址支付ETH; tokenGet就是想买的比特币
+    // 如果是卖token的订单 tokenGet 就是0, 意思是用tokenGet这个地址接收ETH; tokenGive就是卖出的token
     // A way to model an order
     struct _Order {
         // Attributes of an order
@@ -103,6 +105,7 @@ contract Exchange {
     function depositToken(address _token, uint256 _amount) public {
         // 将token地址的代币转到 this:这个交易所里也就是这个智能合约里
         // 在此之前需要有Token的approve，否则就会失败
+        require(_token != ETHER);
         require(Token(_token).transferFrom(msg.sender, address(this), _amount));
         // Managing deposits - update balance
         tokens[_token][msg.sender] = tokens[_token][msg.sender].add(_amount);
@@ -216,7 +219,7 @@ contract Exchange {
         uint256 _amountGive
     ) internal {
         // Fee is paid by the user who filled the order (msg.sender)
-        uint256 _feeAmount = _amountGive.mul(feePercent).div(100);
+        uint256 _feeAmount = _amountGet.mul(feePercent).div(100);
         tokens[_tokenGet][msg.sender] = tokens[_tokenGet][msg.sender].sub(
             _amountGet.add(_feeAmount)
         );

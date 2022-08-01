@@ -1,3 +1,6 @@
+/**
+ * selector是从redux的store中获取数据的组件
+ */
 import { groupBy, reject, get, maxBy, minBy } from 'lodash'
 import moment from 'moment'
 import { createSelector } from 'reselect'
@@ -407,6 +410,8 @@ const decorateFilledOrders = (orders) => {
 }
 
 // 为单个订单添加基本的信息（通用型）
+// 如果是买token的订单 tokenGive 就是0 , 意思是用tokenGive这个地址支付ETH; tokenGet就是想买的比特币的地址
+// 如果是卖token的订单 tokenGet 就是0, 意思是用tokenGet这个地址接收ETH; tokenGive就是卖出的token的地址
 const decorateOrder = (order) => {
   let etherAmount
   let tokenAmount

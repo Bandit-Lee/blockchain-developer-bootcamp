@@ -1,6 +1,6 @@
 /**
- * dispatch 执行 action
- * 此 action 就是这里的函数的 action 参数
+ * dispatch 传递 action
+ * 此 dispatch 的 action 就是这里的函数的 action 参数
  *
  * action 是行为
  * interaction 是获取数据
